@@ -1,0 +1,8 @@
+ClipController -> ClipService -> ClipServiceImpl -> ClipDao -> Clip DaoImpl -> DB
+-> Clip DaoImpl -> Clip Dao -> ClipServiceImpl -> ClipService -> ClipController
+
+ClipPartnerController -> ClipPartnerService -> ClipPartnerServiceImpl -> ClipPartnerDao -> ClipPartner DaoImpl -> DB
+-> ClipPartner DaoImpl -> ClipPartner Dao -> ClipPartnerServiceImpl -> ClipPartnerService -> ClipPartnerCouponController
+
+ClipPartnerCouponController -> ClipPartnerCouponService -> ClipPartnerCouponServiceImpl -> ClipPartnerCouponDao -> ClipPartnerCoupon DaoImpl -> DB
+-> ClipPartnerCoupon DaoImpl -> ClipPartnerCoupon Dao -> ClipPartnerCouponServiceImpl -> ClipPartnerCouponService -> ClipPartnerCouponController
