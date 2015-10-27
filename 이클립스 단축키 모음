@@ -1,0 +1,40 @@
+Eclipse 단축키 확인 및 변경
+Eclipse의 모든 단축키는 Window >> Preferences >> Workbench >> Keys 메뉴에서 확인 및 변경이 가능하다. 그 동안 다른 툴에서 자신의 손에 익숙한 단축키들이 있다면 이 메뉴에서 단축키들을 변경하는 것이 가능하다.
+
+Java Editor 단축키
+Ctrl + Shift + M : 특정 클래스 Import 시키기
+Ctrl + Shift + O : 자동으로 Import 시키기
+Ctrl + Shift + F : 코드 자동 정리
+Ctrl + Shift + G : 특정 메써드나 필드를 Reference하고 있는 곳을 찾는다.
+Ctrl + 1 : Quick Fix. 에러가 발생했을 경우 Quick Fix를 통해 쉽게 해결이 가능하다.
+Ctrl + Shift + / : 블럭 주석 설정
+Alt + Shift + UP : 커서를 기준으로 토큰단위 블럭지정
+Alt + Shift + DOWN : 커서를 기준으로 토큰단위 블럭해제
+CTRL + L : 특정 줄번호로 가기
+Alt + Shift + J : 자동으로 주석 달기 (메소드나 멤버변수에 포커스 두고 실행)
+
+Window 이동
+F10 : 메뉴창을 활성화
+Ctrl + F8 : 다음 Perspective로 이동
+Ctrl + N : 새로운 파일 및 프로젝트 생성.
+Ctrl + Shift + Down : Java Editor에서 다음 member로 이동.
+Ctrl + F7 : 다음 View로 이동.
+Ctrl + Shift + F7 : 이전 View로 이동.
+Alt + <- : 이전 작업 화면
+Alt + -> : 다음 작업 화면
+F12 : 컴파일 중 에러등으로 포커스가 다른데로 갔을 때 Editor 로 커서 이동
+Ctrl + 1 : 컴파일 에러가 발생한 곳에서 Ctrl + 1을 누를 경우 컴파일 에러에 대한 해결책을 제시
+
+디버깅 단축키
+CTRL + Shift + B : 현 커서의 위치에 브레이크 포인터 설정/해제
+F11 : 디버깅 시작
+F8 : 디버깅 계속
+F6 : 한줄씩 실행(Step Over)
+F5 : 한줄씩 실행하되 함수일 경우 그 함수 내부로 들어감(Step Into)
+CTRL + R : 현재 라인까지 실행(Run to Line)
+
+Refactoring 단축키
+Shift + ALT + 알파벳 : Refactoring을 위한 단축키 임.
+
+RUN 단축키
+Ctrl + F11 : 이전에 실행되었던 Run파일 실행.
