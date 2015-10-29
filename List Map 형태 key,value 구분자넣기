@@ -1,0 +1,51 @@
+package com.kt.clippartner.util;
+
+import java.util.List;
+import java.util.Map;
+
+public class util2 {
+	public static String A(List<Map<String, Object>> A, int i) {
+		
+		int index = 0;
+		String Result = "";
+		String key = "";
+		Object value = "";
+		
+		switch (i) {
+	      case 1    : Result += "branch_cd%@|poi_nm%@|branch_nm%@|store_loc%@|m_host%@|image_url%@|_dist_\n";
+	                   break;
+	      case 2   : Result += "name%@|info%@|m_host%@|m_url%@|card_color%@|font_color\n";
+	                   break;
+	      case 3  : Result += "crad_id%@|card_name%@|card_info%@|m_host%@|m_url\n";
+	                   break;
+	      case 4  : Result += "noti_id%@|title%@|image_url%@|val_sday%@|val_eday\n";
+          break;
+	      case 5  : Result += "cpn_id%@|name%@|shop_nm%@|sday%@|eday%@|info\n";
+          break;
+	      default    : Result += "";
+	                   break;
+	    }
+		
+			for(Map < String, Object>map : A){
+				for(Map.Entry<String, Object>entry : map.entrySet()){
+					index++;
+					key = entry.getKey();
+					value = entry.getValue();
+					//데이터값이 NULL일 경우
+					if( key == ""){
+						Result += key + "%@|" + "NULL";
+					}else{
+						Result += key + "%@|"+value;
+					}
+					if( map.size() == index )
+					{
+						Result += "|%@|\n";
+						index=0;
+					}else{
+						Result += "%@|";
+					}	
+				}
+			}
+		return Result;
+	}
+}
