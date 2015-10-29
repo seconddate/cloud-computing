@@ -1,0 +1,21 @@
+SQL Developer는 Oracle 뿐만 아니라 MySQL 접속도 지원한다.
+
+Connector/J 를 다운 받아 SQL Developer에 추가해주면 MySQL에 접속할 수 있다.
+
+
+
+1. 아래 URL에서 Connector/J를 다운 받고 압축을 푼다.
+
+http://dev.mysql.com/downloads/connector/j/
+
+
+2. SQL Developer를 실행하여 '도구 > 환경설정 > 데이터베이스 > 타사 JDBC 드라이버' 에 다운 받은 Connector/J를 등록한다. (mysql-connector-java-5.1.21-bin.jar 파일 추가)
+
+
+
+
+
+3. 아래와 같이 MySQL 접속 탭이 생겼다.
+
+
+
