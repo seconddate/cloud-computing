@@ -1,0 +1,62 @@
+JSONObject는 JSON형태의 데이터를 관리해 주는 메서드이다.
+주의점은 맵의 특성으로 인해 순서를 보장하지 않는다는것. 즉 똑같이 뽑아내도 내용물의 순서가 섞일 수 있다.
+
+
+간단한 사용법은 다음과 같다.
+
+먼저 제이슨 생성 후 데이터 집어넣기
+
+JSONObject obj = new JSONObject();
+obj.put("이름","덩치");
+obj.put("거주지","서울");
+
+출력해보면
+
+String data = obj.toString();
+System.out.println(data);
+
+결과값 - {"이름":"덩치","거주지":"서울"} 
+이렇게 표시된다.
+
+키값에 해당하는 벨류만 뽑고싶다면
+String data = obj.get("key");
+하면 "key"에 해당하는 벨류를 반환한다.
+
+
+JSON형태의 String을 JSONobject에 넣는법은
+
+String data = {"이름":"덩치","거주지":"서울"};
+(실제로는 자바에서는 "를 못읽기때문에  String data = "{\"이름\":\"덩치\",\"거주지\":\"서울\"}";  이런식으로 해줘야 될것임)
+JSONObject obj = new JSONObject(data);
+쓸때는 위와 같이 뽑아서 사용하면 된다.
+
+
+
+JSONArray 는 JSONObject가 들어가는 배열이라고 보면 된다.
+
+예제를 먼저 보자
+- 예제출처 : (http://aroundck.tistory.com/215)
+
+String Json = "[{\"Product\" : \"Mouse\", \"Maker\":\"Samsung\", \"Price\":23000},"
+               + "{\"Product\" : \"KeyBoard\", \"Maker\":\"LG\", \"Price\":12000},"
+               + "{\"Product\":\"HDD\", \"Maker\":\"Western Digital\", \"Price\":156000}]";
+try{
+   String result = "";
+   JSONArray ja = new JSONArray(Json);
+   for (int i = 0; i < ja.length(); i++){
+      JSONObject order = ja.getJSONObject(i);
+      result += "product: " + order.getString("Product") + ", maker: " + order.getString("Maker") +
+                  ", price: " + order.getInt("Price") + "\n";
+   }
+}
+catch (JSONException e){ ;}
+
+
+결과값 :   result : product: Mouse, maker: Samsung, price: 23000
+product: KeyBoard, maker: LG, price: 12000
+product: HDD, maker: Western Digital, price: 156000
+
+이렇게 만들어진 JSONArray 객체를 JSONObject에 넣을 수 있으며
+
+위와같은 방식으로 제이슨오브젝트에 그냥 오브젝트와 어레이를 모두 넣어가며
+작업할 수 있다.
