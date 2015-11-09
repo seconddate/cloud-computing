@@ -1,0 +1,34 @@
+지난에 포스팅했던 MySQL 널체크에 이어  이번에는 MS-SQL 널체크(ISNULL)에 대하여 포스팅을 해보고자 한다.
+
+1. CREATE TABLE
+
+create table null_table (
+  idx bigint IDENTITY(1,1) NOT NULL  PRIMARY KEY,
+  null_text varchar(20)  NULL 
+)
+2. INSERT DATA
+
+
+insert into null_table(null_text)
+values('1');
+insert into null_table(null_text)
+values(null);
+insert into null_table(null_text)
+values('2');
+insert into null_table(null_text)
+values(null);
+insert into null_table(null_text)
+values('3');
+3. SELECT TABLE
+SELECT * 
+FROM null_table
+
+
+
+
+ 
+4. ISNULL 함수 적용
+   사용법 : ISNULL(컬럼명,'컬럼이 NULL일 경우 대체 값')
+
+select *, ISNULL(null_text,'널입니다') null_check
+from null_table
