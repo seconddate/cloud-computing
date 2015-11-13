@@ -1,0 +1,158 @@
+출처 : 
+http://www.roseindia.net/tutorials/json/jsonobject-java-example.shtml
+http://json-lib.sourceforge.net/usage.html
+변환참조 : http://elliecn.tistory.com/39
+
+
+필요한 jar 파일 
+- commons-lang.jar 
+- commons-beanutils.jar
+- commons-collections.jar
+- commons-logging.jar
+- ezmorph.jar
+- json-lib-2.2.2-jdk15.jar
+
+[Sample Start]
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class FirstJSONJava
+{
+    public static void main(String args[]){
+        //일반적인 사용예)
+        JSONObject object=new JSONObject();
+        object.put("name","Amit Kumar");
+        object.put("Max.Marks",new Integer(100));
+        object.put("Min.Marks",new Double(40));
+        object.put("Scored",new Double(66.67));
+        object.put("nickname","Amit");
+        System.out.println(object);
+        //{"name":"Amit Kumar","Max.Marks":100,"Min.Marks":40,"Scored":66.67,"nickname":"Amit"}
+
+        //List사용시
+        List list = new ArrayList();
+        list.add( "first" );
+        list.add( "second" );
+        JSONArray jsonArray = JSONArray.fromObject( list );
+        System.out.println( jsonArray );
+        //["first","second"]
+
+        //직접배열사용시
+        JSONArray jsonArray1 = JSONArray.fromObject( "['json','is','easy']" );
+        System.out.println( jsonArray1 );
+        //["json","is","easy"]
+
+        //BOOLEAN 사용시
+        boolean[] boolArray = new boolean[]{true,false,true};
+        JSONArray jsonArray2 = JSONArray.fromObject( boolArray );
+        System.out.println( jsonArray2 );
+        //[true,false,true]
+
+        //Map 사용시
+        Map map = new HashMap();
+        map.put( "name", "json" );
+        map.put( "bool", Boolean.TRUE );
+        map.put( "int", new Integer(1) );
+        map.put( "arr", new String[]{"a","b"} );
+        map.put( "func", "function(i){ return this.arr[i]; }" );
+
+        JSONObject jsonObject = JSONObject.fromObject( map );
+        System.out.println( jsonObject );
+        // {"arr":["a","b"],"int":1,"name":"json","func":function(i){ return this.arr[i]; },"bool":true}
+    }
+}
+
+[Sample End]
+
+ 
+
+그리고 아래는 Spring 에서 table의 내용을 받아와서 json으로 변경하는 소스의 일부입니다.
+
+        Set<Category> categoryList    = categoryDAO.getSubCatList(step, value);
+        Iterator<Category> iterator    = categoryList.iterator();
+        Category category    = new Category();
+        List<String[]> list = new ArrayList<String[]>();
+        String[] inJson    = new String[2];
+        while(iterator.hasNext())
+          {
+            category = iterator.next();
+            inJson[0]    = category.getCat_no();
+            inJson[1]    = category.getCat_name();
+            list.add( inJson );
+          }
+        JSONArray jsonArray = JSONArray.fromObject( list );
+        System.out.println( jsonArray );
+
+ 
+
+ 
+
+
+//json 생성 및 parsing 에 관한 간다한 예제
+
+import java.util.HashMap;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+
+import org.junit.Test;
+
+public class BoardUtil {
+
+    /**
+     * opflag 에 들어갈 각종 값들을 serialize하여 생성한다.
+     */
+    @Test
+    public void toJsonOpFlag(){
+        HashMap<String, String> op = new HashMap<String, String>();
+        op.put("name", "pondol");
+        op.put("age", "20");
+        op.put("gender", "man");
+        JSONObject jsonObject = JSONObject.fromObject( op );
+        System.out.println(jsonObject);
+    }
+//출력 : {"age":"20","name":"pondol","gender":"man"}
+
+    @Test
+    public void formJsonOpFlag(){
+        String    jsonTxt    = "{"age":"20","name":"pondol","gender":"man"}";
+        JSONObject json = (JSONObject) JSONSerializer.toJSON( jsonTxt );
+        System.out.println("name=" + json.get("name"));
+        System.out.println("age=" + json.get("age"));
+        System.out.println("gender=" + json.get("gender"));
+    }
+//출력 : 
+//name=pondol
+//age=20
+//gender=man
+}
+
+ 
+
+
+//외부파일 json 파싱
+ public static void main(String[] args) throws Exception {
+        URL url = new URL("jsonURL");
+        
+        InputStreamReader is = new InputStreamReader(url.openConnection().getInputStream(), "UTF-8");
+        String jsonTxt = IOUtils.toString( is );
+        
+        JSONObject json = (JSONObject) JSONSerializer.toJSON( jsonTxt ); 
+
+        System.out.println(json);
+      
+        double coolness = json.getDouble( "coolness" );
+        int altitude = json.getInt( "altitude" );
+        JSONObject pilot = json.getJSONObject("pilot");
+        String firstName = pilot.getString("firstName");
+        String lastName = pilot.getString("lastName");
+        
+        System.out.println( "Coolness: " + coolness );
+        System.out.println( "Altitude: " + altitude );
+        System.out.println( "Pilot: " + lastName );
+    }
