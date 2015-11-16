@@ -1,0 +1,5 @@
+		try{
+			query= URLEncoder.encode(query, "UTF-8");
+		} catch(UnsupportedEncodingException ue){
+			ue.printStackTrace(); // ignore
+		}
