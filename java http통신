@@ -1,0 +1,52 @@
+	public String callSearchApi(String requestPath, String auto) {//검색플랫폼 요청
+		HttpURLConnection conn = null;
+		String retStr = null;
+
+		try {
+			URL url = null;
+			if(auto.equals("auto")){
+				url = new URL(messageSourceAccessor.getMessage("autocomplete.api.server") + requestPath);
+			}else{
+				url = new URL(messageSourceAccessor.getMessage("ollehapi.server")  + requestPath);
+			}
+			
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestProperty("Content-length", "0");
+			conn.setUseCaches(false);
+			conn.setAllowUserInteraction(false);
+			conn.setConnectTimeout(5000);
+			conn.setReadTimeout(5000);
+			conn.setRequestMethod("GET");			
+			conn.connect();
+			
+			int status = conn.getResponseCode();
+			String line = null;
+			System.out.println(url);
+			switch(status)
+			{
+				case 200:
+				case 201:
+					BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+					StringBuilder sb = new StringBuilder();  
+					
+					while ((line = br.readLine()) != null) {
+						sb.append(line + "\n");  
+					}
+					br.close();
+					retStr = sb.toString();
+			}
+		} catch (MalformedURLException e) {
+			System.out.println(e);
+//			logger.error(e.toString());
+		} catch (UnknownHostException e) {
+			System.out.println(e);
+//			logger.error(e.toString());
+		} catch (IOException e) {
+//			logger.error(e.toString());
+			System.out.println(e);
+		} finally{
+			conn.disconnect();
+		}
+		
+		return retStr;
+	}
