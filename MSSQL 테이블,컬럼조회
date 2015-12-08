@@ -1,0 +1,13 @@
+sp_tables
+ 
+select name from sysobjects where type='U'
+ 
+-- 테이블 리스트 
+select * from information_schema.tables
+
+-- 컬럼 상세 정보 
+select * from information_schema.columns
+where table_name = '테이블명'
+order by 5
+
+출처: http://blog.naver.com/sj99yang/140053347172
